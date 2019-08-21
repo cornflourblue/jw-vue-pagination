@@ -1,0 +1,32 @@
+{
+    "name": "jw-vue-pagination",
+    "version": "1.0.0",
+    "homepage": "https://jasonwatmore.com/post/2019/08/21/vue-js-simple-pagination-example",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cornflourblue/jw-vue-pagination"
+    },
+    "scripts": {
+        "build": "webpack"
+    },
+    "main": "./lib/JwPagination.js",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "babel-loader": "^8.0.6",
+        "babel-preset-vue": "^2.0.2",
+        "css-loader": "^3.2.0",
+        "html-webpack-plugin": "^3.2.0",
+        "path": "^0.12.7",
+        "vue": "^2.6.10",
+        "vue-loader": "^15.7.1",
+        "vue-template-compiler": "^2.6.10",
+        "webpack": "^4.39.1",
+        "webpack-cli": "^3.3.6",
+        "webpack-dev-server": "^3.8.0"
+    },
+    "dependencies": {
+        "jw-paginate": "^1.0.4"
+    }
+}
