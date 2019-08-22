@@ -86,8 +86,8 @@
             }
         },
         created () {
-            if (!this.$listeners.onChangePage) {
-                throw 'Missing required event listener: "onChangePage"';
+            if (!this.$listeners.changePage) {
+                throw 'Missing required event listener: "changePage"';
             }
 
             // set default styles unless disabled
@@ -122,8 +122,8 @@
                 // update pager
                 this.pager = pager;
 
-                // emit on change page event to parent component
-                this.$emit('onChangePage', pageOfItems);
+                // emit change page event to parent component
+                this.$emit('changePage', pageOfItems);
             }
         }
     }
