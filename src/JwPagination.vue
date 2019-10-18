@@ -20,14 +20,12 @@
 
 <script>
     import paginate from 'jw-paginate';
-
     const defaultLabels = {
         first: 'First',
         last: 'Last',
         previous: 'Previous',
         next: 'Next'
     };
-
     const defaultStyles = {
         ul: {
             margin: 0,
@@ -46,7 +44,6 @@
             float: 'left'
         }
     };
-
     export default {
         props: {
             items: {
@@ -79,51 +76,51 @@
         },
         data () {
             return {
-                pager: {},
-                ulStyles: {},
-                liStyles: {},
-                aStyles: {}
+              list: this.items,
+              pager: {},
+              ulStyles: {},
+              liStyles: {},
+              aStyles: {}
             }
+        },
+        watch: {
+          list(){
+            this.list = this.items;
+            this.setPage(this.initialPage);
+          }
         },
         created () {
             if (!this.$listeners.changePage) {
                 throw 'Missing required event listener: "changePage"';
             }
-
             // set default styles unless disabled
             if (!this.disableDefaultStyles) {
                 this.ulStyles = defaultStyles.ul;
                 this.liStyles = defaultStyles.li;
                 this.aStyles = defaultStyles.a;
             }
-
             // merge custom styles with default styles
             if (this.styles) {
                 this.ulStyles = { ...this.ulStyles, ...this.styles.ul };
                 this.liStyles = { ...this.liStyles, ...this.styles.li };
                 this.aStyles = { ...this.aStyles, ...this.styles.a };
             }
-
             // set page if items array isn't empty
-            if (this.items && this.items.length) {
+            if (this.list && this.list.length) {
                 this.setPage(this.initialPage);
             }
         },
         methods: {
             setPage(page) {
-                const { items, pageSize, maxPages } = this;
-
-                // get new pager object for specified page
-                const pager = paginate(items.length, page, pageSize, maxPages);
-
-                // get new page of items from items array
-                const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
-
-                // update pager
-                this.pager = pager;
-
-                // emit change page event to parent component
-                this.$emit('changePage', pageOfItems);
+              const { list, pageSize, maxPages } = this;
+              // get new pager object for specified page
+              const pager = paginate(list.length, page, pageSize, maxPages);
+              // get new page of items from list array
+              const pageOfItems = list.slice(pager.startIndex, pager.endIndex + 1);
+              // update pager
+              this.pager = pager;
+              // emit change page event to parent component
+              this.$emit('changePage', pageOfItems);
             }
         }
     }
