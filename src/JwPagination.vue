@@ -104,10 +104,8 @@
                 this.aStyles = { ...this.aStyles, ...this.styles.a };
             }
 
-            // set page if items array isn't empty
-            if (this.items && this.items.length) {
-                this.setPage(this.initialPage);
-            }
+            // set to initial page
+            this.setPage(this.initialPage);
         },
         methods: {
             setPage(page) {
@@ -124,6 +122,11 @@
 
                 // emit change page event to parent component
                 this.$emit('changePage', pageOfItems);
+            }
+        },
+        watch: {
+            items () {
+                this.setPage(this.initialPage);
             }
         }
     }
