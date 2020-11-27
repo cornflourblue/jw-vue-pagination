@@ -85,11 +85,10 @@
                 aStyles: {}
             }
         },
+        emits: [
+            'change-page'
+        ],
         created () {
-            if (!this.$listeners.changePage) {
-                throw 'Missing required event listener: "changePage"';
-            }
-
             // set default styles unless disabled
             if (!this.disableDefaultStyles) {
                 this.ulStyles = defaultStyles.ul;
@@ -121,7 +120,7 @@
                 this.pager = pager;
 
                 // emit change page event to parent component
-                this.$emit('changePage', pageOfItems);
+                this.$emit('change-page', pageOfItems);
             }
         },
         watch: {
