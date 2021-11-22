@@ -127,6 +127,9 @@
         watch: {
             items () {
                 this.setPage(this.initialPage);
+            },
+            pageSize () {
+                this.setPage(this.initialPage);
             }
         }
     }
